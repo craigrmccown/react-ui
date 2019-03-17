@@ -8,13 +8,16 @@
   "scripts": {
     "lint": "eslint .",
     "test": "jest",
+    "dev:storybook": "start-storybook -p 3000",
     "dev:es": "yarn build:es -w",
     "dev:cjs": "yarn build:cjs -w",
-    "dev": "concurrently --kill-others-on-fail 'yarn dev:es' 'yarn dev:cjs'",
+    "dev": "concurrently --kill-others-on-fail 'yarn dev:storybook' 'yarn dev:es' 'yarn dev:cjs'",
+    "build:storybook": "build-storybook -c .storybook -o dist",
     "build:es": "babel src -d lib/es --ignore **/*.test.js",
     "build:cjs": "BABEL_ENV=cjs babel src -d lib/cjs --ignore **/*.test.js",
-    "build": "concurrently --kill-others-on-fail 'yarn build:es' 'yarn build:cjs'",
-    "clean": "rm -rf lib"
+    "build": "concurrently --kill-others-on-fail 'yarn build:storybook' 'yarn build:es' 'yarn build:cjs'",
+    "start": "serve dist",
+    "clean": "rm -rf lib dist"
   },
   "peerDependencies": {
     "react": "^16.8.4",
@@ -25,6 +28,11 @@
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
+    "@storybook/addon-actions": "^5.0.2",
+    "@storybook/addon-links": "^5.0.2",
+    "@storybook/addons": "^5.0.2",
+    "@storybook/react": "^5.0.2",
+    "babel-loader": "^8.0.5",
     "concurrently": "^4.1.0",
     "eslint": "^5.15.2",
     "eslint-config-airbnb": "^17.1.0",
@@ -37,5 +45,8 @@
     "prettier": "^1.16.4",
     "react": "^16.8.4",
     "react-dom": "^16.8.4"
+  },
+  "dependencies": {
+    "serve": "^10.1.2"
   }
 }
