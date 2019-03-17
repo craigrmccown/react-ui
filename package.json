@@ -1,14 +1,19 @@
 {
   "name": "@craigrmccown/react-ui",
   "version": "0.0.1",
-  "main": "lib/index.js",
+  "main": "lib/cjs/index.js",
+  "module": "lib/es/index.js",
   "author": "Craig McCown <craigrmccown@gmail.com>",
   "license": "MIT",
   "scripts": {
     "lint": "eslint .",
     "test": "jest",
-    "dev": "yarn build -w",
-    "build": "babel src -d lib --ignore **/*.test.js",
+    "dev:es": "yarn build:es -w",
+    "dev:cjs": "yarn build:cjs -w",
+    "dev": "concurrently --kill-others-on-fail 'yarn dev:es' 'yarn dev:cjs'",
+    "build:es": "babel src -d lib/es --ignore **/*.test.js",
+    "build:cjs": "BABEL_ENV=cjs babel src -d lib/cjs --ignore **/*.test.js",
+    "build": "concurrently --kill-others-on-fail 'yarn build:es' 'yarn build:cjs'",
     "clean": "rm -rf lib"
   },
   "peerDependencies": {
@@ -20,6 +25,7 @@
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
+    "concurrently": "^4.1.0",
     "eslint": "^5.15.2",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^4.1.0",
