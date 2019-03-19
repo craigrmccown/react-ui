@@ -11,7 +11,7 @@ test('it renders successfully', () => {
 
   ReactDOM.render(
     <ThemeProvider>
-      <Button message="button" onClick={() => {}} />
+      <Button onClick={() => {}}>Hey!</Button>
     </ThemeProvider>,
     rootNode,
   )

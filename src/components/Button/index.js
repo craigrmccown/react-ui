@@ -10,9 +10,9 @@ const StyledButton = styled.button`
   background-color: ${({ theme: { colors }, color }) => colors[color]};
 `
 
-const Button = ({ message, color, onClick }) => (
+const Button = ({ children, color, onClick }) => (
   <StyledButton type="button" color={color} onClick={onClick}>
-    {message}
+    {children}
   </StyledButton>
 )
 
@@ -21,7 +21,7 @@ Button.defaultProps = {
 }
 
 Button.propTypes = {
-  message: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
   color: PropTypes.oneOf(['default', 'primary', 'danger']),
   onClick: PropTypes.func.isRequired,
 }
