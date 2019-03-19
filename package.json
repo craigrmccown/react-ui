@@ -1,6 +1,6 @@
 {
   "name": "@craigrmccown/react-ui",
-  "version": "0.0.2-alpha.0",
+  "version": "0.0.2-alpha.1",
   "main": "lib/cjs/index.js",
   "module": "lib/es/index.js",
   "author": "Craig McCown <craigrmccown@gmail.com>",
